@@ -1,0 +1,46 @@
+<div class="container mt-5">
+
+    <table class="table table-borderless table-responsive card-1 p-4">
+<thead>
+<tr class="border-bottom">
+<th>
+  <span class="ml-2">Nombre</span>
+</th>
+<th>
+  <span class="ml-2">Email</span>
+</th>
+<th>
+  <span class="ml-4">Acciones</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-bottom" *ngFor="let user of users">
+  @if (user.active) {
+<td>
+   <div class="p-2 d-flex flex-row align-items-center mb-2">
+      <!-- <img src="https://i.imgur.com/ZSkeqnd.jpg" width="40" class="rounded-circle"> -->
+      <div class="d-flex flex-column ml-2">
+          <span class="d-block font-weight-bold">{{user.name}}</span>
+      </div>
+  </div>
+
+</td>
+<td>
+  <div class="p-2">
+      <span class="font-weight-bold">{{user.email}}</span>
+  </div>
+</td>
+<td>
+  <div class="p-2 icons">
+      <i class="fa fa-edit text-warning m-2" [routerLink]="['/users/manageUser',user.uid]" routerLinkActive="router-link-active" ></i>
+      <i class="fa fa-trash text-danger" (click)="delete(user.uid)"></i>
+  </div>
+</td>
+}
+</tr>
+</tbody>
+</table>
+
+
+</div>

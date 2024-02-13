@@ -1,0 +1,63 @@
+<h1 class="mt-5">Selectores anidados</h1>
+<hr>
+
+<form [formGroup]="myForm">
+    <div class="row mb-3">
+        <div class="col">
+            <label class="form-label">Continente:</label>
+            <select class="form-control" formControlName="region">
+                <option value=""> --Seleccione Continente --</option>
+                @for (region of regions; track $index) {
+                    <option [value]="region | lowercase">{{region}}</option>
+                }
+            </select>
+        </div>    
+    </div>
+    @if(this.countries.length){
+        <div class="row mb-3">
+            <div class="col">
+                <label class="form-label">País:</label>
+                <select class="form-control" formControlName="country">
+                    <option value=""> --Seleccione el país   --</option>
+                    @for (country of countries; track $index) {
+                        <option [value]="country.ccn3 | lowercase">{{country.name.common}}</option>
+                    }
+                </select>
+            </div>    
+        </div>
+    }
+    @if (this.borders.length) {
+        <div class="row mb-3">
+            <div class="col">
+                <label class="form-label">Fronteras:</label>
+                <select class="form-control" formControlName="border">
+                    <option value=""> --Seleccione frontera   --</option>
+                    @for (border of borders; track $index) {
+                        <option [value]="border.ccn3">{{border.name.common}}</option>
+                    }
+                </select>
+            </div>    
+        </div>
+    }
+
+    @if(loading){
+        <button class="btn btn-primary" type="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Loading...
+        </button>
+    }
+
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-primary float-end">Seleccionar</button>
+        </div>
+    </div>    
+
+</form>
+
+<pre>
+    Valid: {{myForm.valid}}
+</pre>
+<pre>
+    {{myForm.value | json}}
+</pre>
